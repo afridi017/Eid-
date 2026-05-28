@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid ul Adha Mubarak - IB Afridi</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-dark: #8B6914;
+    --deep-green: #0A2E1A;
+    --mid-green: #1A5C35;
+    --light-green: #2E8B57;
+    --cream: #FDF5E0;
+    --white: #FFFDF5;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--deep-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    overflow-x: hidden;
+  }
+
+  /* Animated stars background */
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    background: var(--gold-light);
+    border-radius: 50%;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: var(--op, 0.8); transform: scale(1); }
+  }
+
+  /* Main card */
+  .card {
+    position: relative;
+    z-index: 10;
+    width: min(680px, 95vw);
+    background: linear-gradient(160deg, #0D3520 0%, #071A0E 50%, #0A2A18 100%);
+    border: 1px solid var(--gold-dark);
+    border-radius: 4px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow:
+      0 0 60px rgba(201,168,76,0.15),
+      0 0 120px rgba(201,168,76,0.05),
+      inset 0 0 80px rgba(0,0,0,0.4);
+    animation: cardReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  @keyframes cardReveal {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Gold border frame */
+  .card-frame {
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .card-frame::before, .card-frame::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .card-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .card-frame::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  /* Corner ornaments */
+  .corner {
+    position: absolute;
+    width: 60px; height: 60px;
+    z-index: 6;
+    pointer-events: none;
+  }
+  .corner svg { width: 100%; height: 100%; }
+  .corner-tl { top: 8px; left: 8px; }
+  .corner-tr { top: 8px; right: 8px; transform: scaleX(-1); }
+  .corner-bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+  .corner-br { bottom: 8px; right: 8px; transform: scale(-1); }
+
+  /* Geometric pattern bg */
+  .geo-pattern {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.04;
+    background-image:
+      repeating-linear-gradient(45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(-45deg, var(--gold) 0, var(--gold) 1px, transparent 0, transparent 50%);
+    background-size: 20px 20px;
+  }
+
+  /* Top crescent section */
+  .top-section {
+    position: relative;
+    padding: 50px 40px 30px;
+    text-align: center;
+  }
+
+  .moon-lantern {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .crescent {
+    font-size: 3rem;
+    filter: drop-shadow(0 0 15px rgba(201,168,76,0.8));
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+  @keyframes glowPulse {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(201,168,76,0.6)); }
+    50% { filter: drop-shadow(0 0 25px rgba(201,168,76,1)); }
+  }
+
+  .lantern {
+    font-size: 2.2rem;
+    animation: sway 3s ease-in-out infinite;
+    transform-origin: top center;
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  /* Arabic text */
+  .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    text-shadow: 0 0 30px rgba(201,168,76,0.4);
+    margin-bottom: 6px;
+    animation: fadeSlideUp 1s 0.3s both;
+  }
+
+  /* Divider line */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 18px auto;
+    max-width: 400px;
+    animation: fadeSlideUp 1s 0.5s both;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .divider-diamond {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* Main heading */
+  .main-heading {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 20px rgba(201,168,76,0.5),
+      0 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+    margin-bottom: 6px;
+    animation: fadeSlideUp 1s 0.6s both;
+  }
+
+  .sub-heading {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    opacity: 0.85;
+    animation: fadeSlideUp 1s 0.7s both;
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Goat illustration section */
+  .goat-section {
+    position: relative;
+    padding: 10px 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .goat-emoji {
+    font-size: clamp(4rem, 10vw, 6rem);
+    filter: drop-shadow(0 5px 20px rgba(0,0,0,0.5));
+    animation: bounceIn 1s 0.9s both;
+  }
+  @keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+    60% { transform: scale(1.1) rotate(3deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  .goat-flowers {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 1.4rem;
+    animation: fadeSlideUp 1s 1s both;
+  }
+
+  /* Message body */
+  .message-body {
+    padding: 20px 48px 28px;
+    text-align: center;
+    animation: fadeSlideUp 1s 1.1s both;
+  }
+
+  .message-urdu {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.05rem, 3vw, 1.4rem);
+    color: var(--cream);
+    line-height: 2;
+    direction: rtl;
+    text-align: center;
+    margin-bottom: 16px;
+    opacity: 0.92;
+  }
+
+  .message-english {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(0.85rem, 2.2vw, 1rem);
+    color: rgba(253, 245, 224, 0.7);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  /* Sender section */
+  .sender-section {
+    position: relative;
+    margin: 0 40px 40px;
+    padding: 20px 30px;
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 2px;
+    text-align: center;
+    animation: fadeSlideUp 1s 1.3s both;
+  }
+  .sender-section::before {
+    content: '✦';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0A2E1A;
+    padding: 0 12px;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .sender-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.6);
+    margin-bottom: 6px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .sender-name {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 20px rgba(201,168,76,0.4);
+  }
+
+  .sender-sub {
+    font-size: 0.78rem;
+    color: rgba(253,245,224,0.5);
+    margin-top: 5px;
+    letter-spacing: 0.15em;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+
+  /* Floating particles */
+  .particles {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 4;
+  }
+  .particle {
+    position: absolute;
+    font-size: 0.8rem;
+    animation: floatUp var(--dur) linear infinite;
+    opacity: 0;
+    bottom: -20px;
+    left: var(--left);
+    animation-delay: var(--delay);
+  }
+  @keyframes floatUp {
+    0% { opacity: 0; transform: translateY(0) rotate(0deg); }
+    20% { opacity: 0.7; }
+    80% { opacity: 0.5; }
+    100% { opacity: 0; transform: translateY(-600px) rotate(360deg); }
+  }
+
+  /* Bottom decoration */
+  .bottom-deco {
+    padding: 0 40px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    animation: fadeSlideUp 1s 1.5s both;
+  }
+  .deco-motif {
+    color: var(--gold);
+    font-size: 1.2rem;
+    opacity: 0.6;
+  }
+  .deco-text {
+    font-family: 'Amiri', serif;
+    font-size: 0.9rem;
+    color: rgba(201,168,76,0.5);
+    letter-spacing: 0.2em;
+  }
+
+  /* Shine sweep effect */
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+    animation: shine 4s 1.5s ease-in-out infinite;
+    z-index: 20;
+    pointer-events: none;
+  }
+  @keyframes shine {
+    0% { left: -100%; }
+    40%, 100% { left: 150%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Stars background -->
+<div class="stars" id="stars"></div>
+
+<div class="card">
+  <div class="geo-pattern"></div>
+  <div class="card-frame"></div>
+
+  <!-- Corner ornaments -->
+  <div class="corner corner-tl">
+    <svg viewBox="0 0 60 60" fill="none">
+      <path d="M5 30 Q5 5 30 5" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M5 20 Q5 5 20 5" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="3" fill="#C9A84C" opacity="0.8"/>
+      <circle cx="30" cy="5" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="5" cy="30" r="1.5" fill="#C9A84C" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="corner corner-tr">
+    <svg viewBox="0 0 60 60" fill="none">
+      <path d="M5 30 Q5 5 30 5" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M5 20 Q5 5 20 5" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="3" fill="#C9A84C" opacity="0.8"/>
+    </svg>
+  </div>
+  <div class="corner corner-bl">
+    <svg viewBox="0 0 60 60" fill="none">
+      <path d="M5 30 Q5 5 30 5" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M5 20 Q5 5 20 5" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="3" fill="#C9A84C" opacity="0.8"/>
+    </svg>
+  </div>
+  <div class="corner corner-br">
+    <svg viewBox="0 0 60 60" fill="none">
+      <path d="M5 30 Q5 5 30 5" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.7"/>
+      <path d="M5 20 Q5 5 20 5" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.5"/>
+      <circle cx="5" cy="5" r="3" fill="#C9A84C" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Top Section -->
+  <div class="top-section">
+    <div class="moon-lantern">
+      <div class="lantern">🪔</div>
+      <div class="crescent">☪️</div>
+      <div class="lantern" style="animation-delay:0.5s">🪔</div>
+    </div>
+
+    <div class="arabic-text">عِيدُ الأَضْحٰى مُبَارَك</div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="main-heading">Eid ul Adha</div>
+    <div class="sub-heading">— Mubarak Ho —</div>
+  </div>
+
+  <!-- Goat Section -->
+  <div class="goat-section">
+    <div class="goat-flowers">🌸<br>🌺<br>🌸</div>
+    <div class="goat-emoji">🐐</div>
+    <div class="goat-emoji" style="font-size: clamp(3rem,7vw,4.5rem); animation-delay:0.2s">🐑</div>
+    <div class="goat-flowers">🌺<br>🌸<br>🌺</div>
+  </div>
+
+  <!-- Message Body -->
+  <div class="message-body">
+    <div class="message-urdu">
+      آپ کو اور آپ کی پوری فیملی کو<br>
+      عید الاضحیٰ کی دلی مبارک باد!<br>
+      اللہ آپ کی قربانی قبول فرمائے
+    </div>
+    <div class="message-english">
+      May Allah accept your sacrifice &amp; devotion.<br>
+      May this blessed Eid bring joy, peace &amp; prosperity<br>
+      to you and your entire family. Ameen 🤲
+    </div>
+  </div>
+
+  <!-- Sender -->
+  <div class="sender-section">
+    <div class="sender-label">— With Love &amp; Dua's —</div>
+    <div class="sender-name">IB Afridi</div>
+    <div class="sender-sub">& Entire Family</div>
+  </div>
+
+  <!-- Bottom deco -->
+  <div class="bottom-deco">
+    <span class="deco-motif">✦</span>
+    <span class="deco-text">تَقَبَّلَ اللّٰهُ مِنَّا وَمِنْكُمْ</span>
+    <span class="deco-motif">✦</span>
+  </div>
+</div>
+
+<script>
+// Generate stars
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 120; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random() * 3 + 1;
+  star.style.cssText = `
+    width: ${size}px;
+    height: ${size}px;
+    top: ${Math.random() * 100}%;
+    left: ${Math.random() * 100}%;
+    --dur: ${2 + Math.random() * 4}s;
+    --op: ${0.3 + Math.random() * 0.7};
+    animation-delay: ${Math.random() * 4}s;
+  `;
+  starsEl.appendChild(star);
+}
+
+// Generate floating particles
+const particlesEl = document.getElementById('particles');
+const emojis = ['⭐','✨','🌙','🌟','💫','❇️'];
+for (let i = 0; i < 18; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  p.style.cssText = `
+    --left: ${Math.random() * 100}%;
+    --dur: ${5 + Math.random() * 8}s;
+    --delay: ${Math.random() * 8}s;
+  `;
+  particlesEl.appendChild(p);
+}
+</script>
+</body>
+</html>
